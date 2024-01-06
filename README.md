@@ -14,7 +14,7 @@
 
 - 整个web的框架是flask
 
-- 样式用的是[bootstrap5]([Bootstrap 入门 · Bootstrap v5 中文文档 v5.3 | Bootstrap 中文网](https://v5.bootcss.com/docs/getting-started/introduction/)),[font Awesome](https://fontawesome.com/)
+- 样式用的是[bootstrap5](https://v5.bootcss.com/docs/getting-started/introduction/),[font Awesome](https://fontawesome.com/)
 
 - 数据库用的是sqlite
 
