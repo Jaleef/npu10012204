@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">班级相册</h1>
+                <p class="lead text-muted">这里是班级同学在各种活动中的照片，欢迎你上传你喜欢的照片</p>
+                <p>
+                    <a href="{{ url_for('uploadAlbum') }}" class="btn btn-success btn-lg my-2 rounded-4">上传</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for photo in album %}
+                    <div class="col">
+                        <a href="{{ url_for('checkPhoto', filename=photo.filename) }}" target="_blank" >
+                        <div class="card shadow-sm">
+                            <img width="100%" src="../static/images/{{ photo.filename }}"/>
+
+                            <div class="card-body">
+                                <p class="card-text">{{ photo.description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <text x="40%" y="40%" fill="#eceeef" dy=".3em">{{ photo.uploader }}<small>(上传)</small></text>
+                                    </div>
+                                    <small class="text-muted fa fa-calendar"> {{ photo.date }}</small>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

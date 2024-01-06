@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .locate {
+            position: relative;
+            left: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="../static/plugins/editor.md-master/css/editormd.min.css"/>
+
+    <form action="{{ url_for('edit_post') }}" method="POST" id="my_form">
+
+        <div class="input-group container">
+            <span class="input-group-text rounded-4">文章标题</span>
+            <input type="text" name="title" placeholder="请输入标题" class="form-control rounded-4" id="title">
+        </div>
+
+        <div class="form-control" id="editormd">
+            <textarea name="text" class="editormd-form" id="text"></textarea>
+        </div>
+
+        <span class="input-group mb-3 container">
+            <span class="border input-group-text rounded-4">署名</span>
+            <input name="uploader" class="rounded-4 border border-1">
+            <button class="btn btn-success btn-lg rounded-pill" style="margin-left: 370px" type="submit">提交</button>
+        </span>
+    </form>
+
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/plugins/editor.md-master/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            editormd("editormd", {
+                width: "80%",
+                height: "640px",
+                // markdown: "xxxx",     // dynamic set Markdown text
+                path: "../static/plugins/editor.md-master/lib/",  // Autoload modules mode, codemirror, marked... dependents libs path
+
+                syncScrolling: "single",
+
+                imageUpload: true,
+                imageFormats: ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
+                imageUploadURL: '{{ url_for('imgUpload') }}',
+            });
+        });
+        document.getElementById("my_form").addEventListener("submit", function (event) {
+            let title = document.getElementById("title");
+            if (title.value === "") {
+                alert("请填写标题");
+                event.preventDefault();
+            }
+        })
+        window.addEventListener("beforeunload", function (event) {
+            let title = document.getElementById("title");
+            let text = document.getElementById("text");
+
+            if (title.value !== "" || text.value !== " ") {
+                let user_choice = confirm("您的内容未保存，确定要退出吗")
+                if (!user_choice) {
+                    event.preventDefault();
+                }
+            }
+        })
+        window.onbeforeunload = function (e) {
+            //let e = window.event || e;
+            alert("你好");
+        }
+    </script>
+
+{% endblock %}

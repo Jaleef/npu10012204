@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .container {
+            /*position: relative;*/
+        }
+        .locate {
+            position: relative;
+            right: -1220px;
+        }
+    </style>
+    <div class="container">
+
+        <button class="btn btn-primary locate" ><a href="{{ url_for('edit_post') }}" class="text-white">写博客</a></button>
+        <div class="list-group list-style-type:none">
+            {% for post in posts %}
+                <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+                    <h2 class="blog-post-title mb-1">
+                        <a style="color: #212529" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a>
+                    </h2>
+                    <p class="blog-post-meta fa fa-calendar"> {{ post.date }}</p>
+                    <p>{{ post.text[:100] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

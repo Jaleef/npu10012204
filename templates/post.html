@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        .container {
+            position: relative;
+        }
+        .locate {
+            position: relative;
+            left: -100px;
+        }
+    </style>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/marked.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/prettify.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/raphael.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/underscore.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/sequence-diagram.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/flowchart.min.js"></script>
+    <script src="../static/plugins/editor.md-master/lib/jquery.flowchart.min.js"></script>
+    <script src="../static/plugins/editor.md-master/editormd.js"></script>
+
+
+    <div class="container">
+        <button class="btn locate" onclick="goBack()">返回</button>
+        <h2>{{ post.title }}</h2>
+        <h5> by {{ post.uploader }}</h5>
+        <h6 class="fa fa-calendar"> 发表于 {{ post.date }}</h6>
+        <div id="test" class="border border-4 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <textarea style="display:none" >{{ post.text }}</textarea>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        editormd.markdownToHTML("test", {
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tex: true,
+            flowChart: true,
+            sequenceDiagram: true,
+        })
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+{% endblock %}
