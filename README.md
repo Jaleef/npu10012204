@@ -4,6 +4,20 @@
 
 
 
+## 运行
+
+#### bash里面:
+
+```shell
+source venv/Scripts/activate
+
+pip install -r requirement.txt
+
+python app.py
+```
+
+
+
 **如何你在冥思苦想为自己班建一个网站，同时GitHub托管访问又太慢了，不妨驻足看看这个项目，用最简单的语言python，相对简单的框架flask，写的web，绝对容易弄懂，希望给你点启发**
 
 
@@ -21,5 +35,4 @@
 - markdown在线编辑器和渲染用的是[pandao](https://github.com/pandao/editor.md)这位佬的开源项目
 
 - 最感谢文心一言，很多方案都是直接找他问的
-
 
