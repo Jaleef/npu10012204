@@ -9,6 +9,8 @@
 #### bash里面:
 
 ```shell
+python -m venv venv
+
 source venv/Scripts/activate
 
 pip install -r requirement.txt
